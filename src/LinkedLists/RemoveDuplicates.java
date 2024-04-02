@@ -1,4 +1,4 @@
-package LinkedList;
+package LinkedLists;
 
 public class RemoveDuplicates {
     // Inner class representing a node in the linked list
