@@ -1,6 +1,4 @@
-package Trees;
-
-public class TreeEquality {
+public class NodesAtDistance {
 
     private class Node {
         private int value;
@@ -46,26 +44,10 @@ public class TreeEquality {
         }
     }
 
-    public boolean equals(TreeEquality other) {
-        if(other == null) {
-            return false;
-        }
-        return equals(root, other.root);
-    }
 
-    private boolean equals(Node first, Node second) {
-        if(first == null && second == null) {
-            return true;
-        }
-        if (first != null && second != null) {
-            return first.value == second.value && equals(first.leftChild, second.leftChild) &&
-                    equals(first.rightChild, second.rightChild);
-        }
-        return false;
-    }
 
     public static void main(String[] args) {
-        TreeEquality tree = new TreeEquality();
+        NodesAtDistance tree = new NodesAtDistance();
         tree.insert(7);
         tree.insert(4);
         tree.insert(9);
@@ -74,14 +56,5 @@ public class TreeEquality {
         tree.insert(8);
         tree.insert(10);
 
-        TreeEquality tree2 = new TreeEquality();
-        tree2.insert(7);
-        tree2.insert(4);
-        tree2.insert(9);
-        tree2.insert(1);
-        tree2.insert(6);
-        tree2.insert(8);
-        tree2.insert(10);
-        System.out.println(tree.equals(tree2));
     }
 }

@@ -1,6 +1,6 @@
 package Trees;
 
-public class TreeEquality {
+public class ValidatingBST {
 
     private class Node {
         private int value;
@@ -41,31 +41,33 @@ public class TreeEquality {
                     break;
                 }
                 current = current.rightChild;
-
             }
         }
     }
 
-    public boolean equals(TreeEquality other) {
-        if(other == null) {
-            return false;
-        }
-        return equals(root, other.root);
+    public void swapRoot() {
+        var temp = root.leftChild;
+        root.leftChild = root.rightChild;
+        root.rightChild = temp;
     }
 
-    private boolean equals(Node first, Node second) {
-        if(first == null && second == null) {
+    public boolean isBinarySearchTree() {
+        return isBinarySearchTree(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
+    }
+
+    private boolean isBinarySearchTree(Node root, int min, int max) {
+        if(root == null) {
             return true;
         }
-        if (first != null && second != null) {
-            return first.value == second.value && equals(first.leftChild, second.leftChild) &&
-                    equals(first.rightChild, second.rightChild);
+        if(root.value < min || root.value > max) {
+            return false;
         }
-        return false;
+        return isBinarySearchTree(root.leftChild, min, root.value - 1) &&
+                isBinarySearchTree(root.rightChild, root.value + 1, max);
     }
 
     public static void main(String[] args) {
-        TreeEquality tree = new TreeEquality();
+        ValidatingBST tree = new ValidatingBST();
         tree.insert(7);
         tree.insert(4);
         tree.insert(9);
@@ -73,15 +75,8 @@ public class TreeEquality {
         tree.insert(6);
         tree.insert(8);
         tree.insert(10);
-
-        TreeEquality tree2 = new TreeEquality();
-        tree2.insert(7);
-        tree2.insert(4);
-        tree2.insert(9);
-        tree2.insert(1);
-        tree2.insert(6);
-        tree2.insert(8);
-        tree2.insert(10);
-        System.out.println(tree.equals(tree2));
+        // Method to swap the nodes so that the tree is no longer a BST
+//        tree.swapRoot();
+        System.out.println(tree.isBinarySearchTree());
     }
 }
