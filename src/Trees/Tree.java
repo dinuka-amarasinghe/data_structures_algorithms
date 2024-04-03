@@ -1,6 +1,6 @@
 package Trees;
 
-public class TreeInsert {
+public class Tree {
 
     private class Node {
         private int value;
@@ -46,8 +46,21 @@ public class TreeInsert {
         }
     }
 
+    public boolean find(int value) {
+        var current = root;
+        while(current != null) {
+            if(value < current.value) {
+                current = current.leftChild;
+            } else if (value > current.value) {
+                current = current.rightChild;
+            } else
+                return true;
+        }
+        return false;
+    }
+
     public static void main(String[] args) {
-        TreeInsert tree = new TreeInsert();
+        Tree tree = new Tree();
         tree.insert(7);
         tree.insert(4);
         tree.insert(9);
@@ -55,6 +68,6 @@ public class TreeInsert {
         tree.insert(6);
         tree.insert(8);
         tree.insert(10);
-        System.out.println("Done");
+        System.out.println(tree.find(11));
     }
 }
