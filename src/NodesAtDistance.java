@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class NodesAtDistance {
 
     private class Node {
@@ -39,12 +41,27 @@ public class NodesAtDistance {
                     break;
                 }
                 current = current.rightChild;
-
             }
         }
     }
 
+    public ArrayList<Integer> getNodesAtDistance(int distance) {
+        ArrayList<Integer> list = new ArrayList<>();
+        getNodesAtDistance(root, distance, list);
+        return list;
+    }
 
+    private void getNodesAtDistance(Node root, int distance, ArrayList<Integer> list) {
+        if(root == null) {
+            return;
+        }
+        if(distance==0) {
+            list.add(root.value);
+            return;
+        }
+        getNodesAtDistance(root.leftChild, distance -  1, list);
+        getNodesAtDistance(root.rightChild, distance - 1, list);
+    }
 
     public static void main(String[] args) {
         NodesAtDistance tree = new NodesAtDistance();
@@ -55,6 +72,9 @@ public class NodesAtDistance {
         tree.insert(6);
         tree.insert(8);
         tree.insert(10);
-
+        var list = (tree.getNodesAtDistance(1));
+        for (var item: list) {
+            System.out.println(item);
+        }
     }
 }
