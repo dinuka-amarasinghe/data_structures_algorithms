@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class NodesAtDistance {
+public class TraverseLevelOrder {
 
     private class Node {
         private int value;
@@ -45,6 +45,20 @@ public class NodesAtDistance {
         }
     }
 
+    public int height() {
+        return height(root);
+    }
+
+    private int height(Node root) {
+        if (root == null) {
+            return -1;
+        }
+        if(root.leftChild == null && root.rightChild == null) {
+            return 0;
+        }
+        return 1 + Math.max(height(root.leftChild), height(root.rightChild));
+    }
+
     public ArrayList<Integer> getNodesAtDistance(int distance) {
         ArrayList<Integer> list = new ArrayList<>();
         getNodesAtDistance(root, distance, list);
@@ -63,8 +77,18 @@ public class NodesAtDistance {
         getNodesAtDistance(root.rightChild, distance - 1, list);
     }
 
+
+    public void traverseLevelOrder() {
+        for(var i = 0; i <= height(); i++) {
+            //TODO understand how this loop works
+            for(var value:getNodesAtDistance(i)) {
+                System.out.println(value);
+            }
+        }
+    }
+
     public static void main(String[] args) {
-        NodesAtDistance tree = new NodesAtDistance();
+        TraverseLevelOrder tree = new TraverseLevelOrder();
         tree.insert(7);
         tree.insert(4);
         tree.insert(9);
@@ -72,9 +96,6 @@ public class NodesAtDistance {
         tree.insert(6);
         tree.insert(8);
         tree.insert(10);
-        var list = (tree.getNodesAtDistance(1));
-        for (var item: list) {
-            System.out.println(item);
-        }
+        tree.traverseLevelOrder();
     }
 }
