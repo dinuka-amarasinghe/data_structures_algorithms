@@ -1,5 +1,7 @@
 package Trees;
 
+// Insert nodes & find
+
 public class Tree {
 
     private class Node {

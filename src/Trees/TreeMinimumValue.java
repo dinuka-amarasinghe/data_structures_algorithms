@@ -1,6 +1,6 @@
 package Trees;
 
-public class TreeTraversal {
+public class TreeMinimumValue {
 
     private class Node {
         private int value;
@@ -46,50 +46,26 @@ public class TreeTraversal {
         }
     }
 
-
-    public void traversePreOrder() {
-        traversePreOrder(root);
+    private boolean isLeaf(Node node) {
+        return node.leftChild == null && node.rightChild == null;
     }
 
-    private void traversePreOrder(Node root) {
-        if (root == null) {
-            return;
+    public int min() {
+        return min(root);
+    }
+    private int min(Node root) {
+        if(isLeaf(root)) {
+            return root.value;
         }
-        System.out.println(root.value);
-        traversePreOrder(root.leftChild);
-        traversePreOrder(root.rightChild);
+        var left = min(root.leftChild);
+        var right = min(root.rightChild);
 
+        return Math.min(Math.min(left,right), root.value);
     }
 
-    public void traverseInOrder() {
-        traverseInOrder(root);
-    }
-
-    private void traverseInOrder(Node root) {
-        if(root == null) {
-            return;
-        }
-        traverseInOrder(root.leftChild);
-        System.out.println(root.value);
-        traversePreOrder(root.rightChild);
-
-    }
-
-    public void traversePostOrder() {
-        traversePostOrder(root);
-    }
-
-    private void traversePostOrder(Node root) {
-        if (root == null) {
-            return;
-        }
-        traversePostOrder(root.leftChild);
-        traversePostOrder(root.rightChild);
-        System.out.println(root.value);
-    }
 
     public static void main(String[] args) {
-        TreeTraversal tree = new TreeTraversal();
+        TreeMinimumValue tree = new TreeMinimumValue();
         tree.insert(7);
         tree.insert(4);
         tree.insert(9);
@@ -97,8 +73,6 @@ public class TreeTraversal {
         tree.insert(6);
         tree.insert(8);
         tree.insert(10);
-        tree.traversePreOrder();
-        tree.traverseInOrder();
-        tree.traversePostOrder();
+        System.out.println(tree.min());
     }
 }
