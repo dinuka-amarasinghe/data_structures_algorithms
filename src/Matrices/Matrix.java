@@ -2,7 +2,7 @@ package Matrices;
 
 public class Matrix {
 
-    // counter for calls of multiply method
+    // Counter for calls of multiply method
     static int multiplyCount = 0;
 
     public static void printMatrix(int[][] matrix) {
