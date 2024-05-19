@@ -2,7 +2,7 @@ package Searching;
 
 public class BinarySearchIterative {
 
-    public int binarySearch(int[] array, int target) {
+    public static int binarySearch(int[] array, int target) {
         int left = 0;
         int right = array.length - 1;
 
@@ -22,8 +22,7 @@ public class BinarySearchIterative {
 
     public static void main(String[] args) {
         int[] numbers = {1,3,5,6,7};
-        BinarySearchIterative binarySearchIterative = new BinarySearchIterative();
-        int index = binarySearchIterative.binarySearch(numbers, 6);
+        int index = binarySearch(numbers, 3);
         System.out.println(index);
     }
 }
