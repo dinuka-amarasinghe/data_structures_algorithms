@@ -36,7 +36,5 @@ public class ReverseAnArray {
 
         reverseInPlace(arr);
         Arrays.stream(arr).forEach(num -> System.out.print(num + " "));
-
-
     }
 }
