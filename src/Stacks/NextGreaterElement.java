@@ -2,7 +2,7 @@ package Stacks;
 
 import java.util.Stack;
 
-public class Algorithms {
+public class NextGreaterElement {
 
     public static void printNextGreaterElement(int[] arr) {
         if (arr.length == 0) {
