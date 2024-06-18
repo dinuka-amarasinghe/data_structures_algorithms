@@ -1,38 +1,32 @@
 package Arrays;
 
-import java.sql.SQLOutput;
 import java.util.*;
 import java.io.*;
 
 public class MaxPairwiseProduct {
-
-    static int getMaxPairwiseProduct(int[] numbers) {
+    static long getMaxPairwiseProduct(int[] numbers) {
         int n = numbers.length;
-        if (n < 2) {
-            throw new IllegalArgumentException("The array should contain at least two elements.");
-        }
-
-        int max1 = Integer.MIN_VALUE;
-        int max2 = Integer.MIN_VALUE;
-
-        for (int number : numbers) {
-            if (number > max1) {
-                max2 = max1;
-                max1 = number;
-            } else if (number > max2) {
-                max2 = number;
+        int maxIndex1 = -1;
+        for (int i = 0; i < n; i++) {
+            if (maxIndex1 == -1 || numbers[i] > numbers[maxIndex1]) {
+                maxIndex1 = i;
             }
         }
-
-        return max1 * max2;
+        int maxIndex2 = -1;
+        for (int i = 0; i < n; i++) {
+            if (i != maxIndex1 && (maxIndex2 == -1 || numbers[i] > numbers[maxIndex2])) {
+                maxIndex2 = i;
+            }
+        }
+        return (long) numbers[maxIndex1] * numbers[maxIndex2];
     }
 
     public static void main(String[] args) {
         FastScanner scanner = new FastScanner(System.in);
-        System.out.print("Please enter the number of elements: ");
+        System.out.print("Enter the number of elements: ");
         int n = scanner.nextInt();
         int[] numbers = new int[n];
-        System.out.println("Please enter the elements: ");
+        System.out.println("Enter the elements: ");
         for (int i = 0; i < n; i++) {
             numbers[i] = scanner.nextInt();
         }
